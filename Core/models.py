@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 
+
 # Create your models here.
 def upload_image(self, filename):
     return 'static/payloads/{}'.format(filename)
@@ -8,7 +9,7 @@ def upload_image(self, filename):
 
 class ServiceReceived(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     org_name = models.CharField(max_length=255)
     facility_hfr_code = models.CharField(max_length=255)
@@ -41,7 +42,7 @@ class ServiceReceivedItems(models.Model):
 
 class DeathByDiseaseCaseAtFacility(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     org_name = models.CharField(max_length=255)
     facility_hfr_code = models.CharField(max_length=255)
@@ -55,7 +56,8 @@ class DeathByDiseaseCaseAtFacilityItems(models.Model):
     def __str__(self):
         return '%d' % self.id
 
-    death_by_disease_case_at_facility = models.ForeignKey(DeathByDiseaseCaseAtFacility, on_delete=models.CASCADE, null=True, blank=True)
+    death_by_disease_case_at_facility = models.ForeignKey(DeathByDiseaseCaseAtFacility, on_delete=models.CASCADE,
+                                                          null=True, blank=True)
     ward_name = models.CharField(max_length=255)
     ward_id = models.CharField(max_length=255)
     patient_id = models.CharField(max_length=255)
@@ -71,7 +73,7 @@ class DeathByDiseaseCaseAtFacilityItems(models.Model):
 
 class DeathByDiseaseCaseNotAtFacility(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     org_name = models.CharField(max_length=255)
     facility_hfr_code = models.CharField(max_length=255)
@@ -83,9 +85,10 @@ class DeathByDiseaseCaseNotAtFacility(models.Model):
 
 class DeathByDiseaseCaseNotAtFacilityItems(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
-    death_by_disease_case_not_at_facility = models.ForeignKey(DeathByDiseaseCaseNotAtFacility, on_delete=models.CASCADE, null=True, blank=True)
+    death_by_disease_case_not_at_facility = models.ForeignKey(DeathByDiseaseCaseNotAtFacility, on_delete=models.CASCADE,
+                                                              null=True, blank=True)
     place_of_death_id = models.CharField(max_length=255)
     gender = models.CharField(max_length=50)
     date_of_birth = models.DateField()
@@ -100,7 +103,7 @@ class DeathByDiseaseCaseNotAtFacilityItems(models.Model):
 
 class BedOccupancy(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     org_name = models.CharField(max_length=255)
     facility_hfr_code = models.CharField(max_length=255)
@@ -112,7 +115,7 @@ class BedOccupancy(models.Model):
 
 class BedOccupancyItems(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     bed_occupancy = models.ForeignKey(BedOccupancy, on_delete=models.CASCADE, null=True, blank=True)
     patient_id = models.CharField(max_length=255)
@@ -144,7 +147,7 @@ class BedOccupancyReport(models.Model):
 
 class RevenueReceived(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     org_name = models.CharField(max_length=255)
     facility_hfr_code = models.CharField(max_length=255)
@@ -156,7 +159,7 @@ class RevenueReceived(models.Model):
 
 class RevenueReceivedItems(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     revenue_received = models.ForeignKey(RevenueReceived, on_delete=models.CASCADE, null=True, blank=True)
     system_trans_id = models.CharField(max_length=100)
@@ -178,7 +181,7 @@ class RevenueReceivedItems(models.Model):
 
 class ValidationRule(models.Model):
     def __str__(self):
-        return '%s' %self.description
+        return '%s' % self.description
 
     description = models.CharField(max_length=255)
     rule_name = models.CharField(max_length=255, null=True, blank=True)
@@ -189,7 +192,7 @@ class ValidationRule(models.Model):
 
 class FieldValidationMapping(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     ServicesReceived = 'SVCREC'
     DeathByDiseaseCaseAtFacility = 'DDC'
@@ -215,10 +218,10 @@ class FieldValidationMapping(models.Model):
 
 class TransactionSummary(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     def threshold(self):
-        return (self.total_passed/(self.total_failed + self.total_passed)) * 100
+        return (self.total_passed / (self.total_failed + self.total_passed)) * 100
 
     def row_color_codes(self):
         message = PayloadThreshold.objects.filter(payload_code=self.message_type).first()
@@ -234,7 +237,7 @@ class TransactionSummary(models.Model):
 
         if total_failed != 0 and total_passed != 0:
             calculated_threshold = self.threshold()
-        elif total_passed ==0 and total_failed != 0:
+        elif total_passed == 0 and total_failed != 0:
             calculated_threshold = 0
         elif total_passed != 0 and total_failed == 0:
             calculated_threshold = 100
@@ -263,10 +266,9 @@ class TransactionSummary(models.Model):
     transaction_date_time = models.DateTimeField(auto_now=True)
     message_type = models.CharField(max_length=100, choices=MESSAGE_TYPE_CHOICES)
     org_name = models.CharField(max_length=255)
-    facility_hfr_code  = models.CharField(max_length=255)
+    facility_hfr_code = models.CharField(max_length=255)
     total_passed = models.IntegerField(default=0)
     total_failed = models.IntegerField(default=0)
-
 
     class Meta:
         db_table = "TransactionSummary"
@@ -275,7 +277,7 @@ class TransactionSummary(models.Model):
 
 class TransactionSummaryLine(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     transaction = models.ForeignKey(TransactionSummary, on_delete=models.CASCADE, null=True, blank=True)
     payload_object = models.TextField()
@@ -289,7 +291,7 @@ class TransactionSummaryLine(models.Model):
 
 class PayloadThreshold(models.Model):
     def __str__(self):
-        return '%d' %self.id
+        return '%d' % self.id
 
     payload_description = models.CharField(max_length=255)
     payload_code = models.CharField(max_length=255)
@@ -301,7 +303,7 @@ class PayloadThreshold(models.Model):
 
 class PayloadUpload(models.Model):
     def __str__(self):
-        return "%d"  % self.id
+        return "%d" % self.id
 
     ServicesReceived = 'SVCREC'
     DeathByDiseaseCaseAtFacility = 'DDC'
@@ -323,5 +325,3 @@ class PayloadUpload(models.Model):
 
     class Meta:
         db_table = "PayloadUploads"
-
-

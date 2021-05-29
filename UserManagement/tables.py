@@ -12,7 +12,8 @@ class Actions(tables.Column):
         return mark_safe('<button id="%s" class="btn_audit_report btn btn-success'
                          ' btn-xs"><i class="la la"></i>Audit Report</button> '
                          '<button id="%s" class="btn_download btn btn-primary'
-                         ' btn-xs"><i class="la la-down"></i>Download CSV</button> '  % (escape(record.id), escape(record.id)))
+                         ' btn-xs"><i class="la la-down"></i>Download CSV</button> ' % (
+                         escape(record.id), escape(record.id)))
 
 
 class TransactionSummaryTable(tables.Table):
@@ -39,7 +40,7 @@ class TransactionSummaryTable(tables.Table):
     class Meta:
         model = core_models.TransactionSummary
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','id','transaction_date_time','message_type','total_passed', 'total_failed','threshold')
+        fields = ('counter', 'id', 'transaction_date_time', 'message_type', 'total_passed', 'total_failed', 'threshold')
         row_attrs = {
             'data-id': lambda record: record.pk,
             "style": lambda record: "background-color:" + record.row_color_codes()
@@ -60,7 +61,7 @@ class TransactionSummaryLineTable(tables.Table):
     class Meta:
         model = core_models.TransactionSummaryLine
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','transaction','id', 'payload_object', 'transaction_status', 'error_message')
+        fields = ('counter', 'transaction', 'id', 'payload_object', 'transaction_status', 'error_message')
         row_attrs = {
             'data-id': lambda record: record.pk
         }

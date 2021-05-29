@@ -1,4 +1,3 @@
-
 """
 HDR URL Configuration
 
@@ -29,3 +28,8 @@ urlpatterns = [
     path('save_payload_from_csv', core_tasks.save_payload_from_csv, name='save_payload_from_csv'),
 
 ]
+
+admin.site.site_header = 'HDR Admin'
+admin.site.site_title = 'HDR Admin'
+admin.site.index_title = 'Welcome to HDR Admin Panel'
+admin.site.empty_value_display = '**Empty**'

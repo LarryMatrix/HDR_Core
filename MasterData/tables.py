@@ -13,7 +13,7 @@ class Actions(tables.Column):
                          ' btn-sm"><i class="la la-trash"></i>Delete</button> '
                          '<button id="%s" class="btn_update btn btn-primary'
                          ' btn-sm"><i class="la la-pencil"></i>Edit</button> '
-                         %  (escape(record.id),escape(record.id)))
+                         % (escape(record.id), escape(record.id)))
 
 
 class PayerMappingTable(tables.Table):
@@ -23,7 +23,7 @@ class PayerMappingTable(tables.Table):
     class Meta:
         model = master_data_models.PayerMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','payer','local_payer_id','local_payer_description' )
+        fields = ('counter', 'payer', 'local_payer_id', 'local_payer_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -41,7 +41,7 @@ class ExemptionMappingTable(tables.Table):
     class Meta:
         model = master_data_models.ExemptionMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','exemption','local_exemption_id','local_exemption_description' )
+        fields = ('counter', 'exemption', 'local_exemption_id', 'local_exemption_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -51,6 +51,7 @@ class ExemptionMappingTable(tables.Table):
                                    itertools.count(self.page.start_index()))
         return next(self.row_counter)
 
+
 class DepartmentMappingTable(tables.Table):
     Actions = Actions()
     counter = tables.Column(empty_values=(), orderable=False)
@@ -58,7 +59,7 @@ class DepartmentMappingTable(tables.Table):
     class Meta:
         model = master_data_models.DepartmentMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','department','local_department_id','local_department_description' )
+        fields = ('counter', 'department', 'local_department_id', 'local_department_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -76,7 +77,7 @@ class WardMappingTable(tables.Table):
     class Meta:
         model = master_data_models.Ward
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','description','local_ward_id','local_ward_description', 'number_of_beds','department' )
+        fields = ('counter', 'description', 'local_ward_id', 'local_ward_description', 'number_of_beds', 'department')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -94,7 +95,7 @@ class GenderMappingTable(tables.Table):
     class Meta:
         model = master_data_models.GenderMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','gender','local_gender_description' )
+        fields = ('counter', 'gender', 'local_gender_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -103,6 +104,7 @@ class GenderMappingTable(tables.Table):
         self.row_counter = getattr(self, 'row_counter',
                                    itertools.count(self.page.start_index()))
         return next(self.row_counter)
+
 
 class ServiceProviderRankingMappingTable(tables.Table):
     Actions = Actions()
@@ -111,7 +113,8 @@ class ServiceProviderRankingMappingTable(tables.Table):
     class Meta:
         model = master_data_models.ServiceProviderRankingMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','service_provider_ranking', 'local_service_provider_ranking_id','local_service_provider_ranking_description')
+        fields = ('counter', 'service_provider_ranking', 'local_service_provider_ranking_id',
+                  'local_service_provider_ranking_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -121,6 +124,7 @@ class ServiceProviderRankingMappingTable(tables.Table):
                                    itertools.count(self.page.start_index()))
         return next(self.row_counter)
 
+
 class PlaceODeathMappingTable(tables.Table):
     Actions = Actions()
     counter = tables.Column(empty_values=(), orderable=False)
@@ -128,7 +132,7 @@ class PlaceODeathMappingTable(tables.Table):
     class Meta:
         model = master_data_models.PlaceOfDeathMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','place_of_death', 'local_place_of_death_id','local_place_of_death_description')
+        fields = ('counter', 'place_of_death', 'local_place_of_death_id', 'local_place_of_death_description')
         row_attrs = {
             'data-id': lambda record: record.pk
         }
@@ -146,7 +150,7 @@ class CPTCodeMappingTable(tables.Table):
     class Meta:
         model = master_data_models.CPTCodesMapping
         template_name = "django_tables2/bootstrap.html"
-        fields = ('counter','cpt_code', 'cpt_code__cpt_description','local_code')
+        fields = ('counter', 'cpt_code', 'cpt_code__cpt_description', 'local_code')
         row_attrs = {
             'data-id': lambda record: record.pk
         }

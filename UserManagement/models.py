@@ -27,7 +27,6 @@ class Profile(models.Model):
         db_table = 'UserProfile'
 
 
-
 class TokenModel(models.Model):
     key = models.CharField(max_length=255)
     first_name = models.CharField(max_length=50)
@@ -43,7 +42,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
-
-
-
-

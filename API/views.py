@@ -1,13 +1,14 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import  IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import TransactionSummarySerializer, IncomingDeathByDiseaseCaseAtTheFacilitySerializer, \
     DeathByDiseaseCaseAtFacilityItemsSerializer, \
-    DeathByDiseaseCaseNotAtFacilityItemsSerializer, RevenueReceivedItemsSerializer,BedOccupancyItemsSerializer, \
+    DeathByDiseaseCaseNotAtFacilityItemsSerializer, RevenueReceivedItemsSerializer, BedOccupancyItemsSerializer, \
     ServiceReceivedItemsSerializer, IncomingDeathByDiseaseCaseNotAtTheFacilitySerializer, \
     IncomingServicesReceivedSerializer, IncomingBedOccupancySerializer, IncomingRevenueReceivedSerializer
 from Core.models import TransactionSummary, RevenueReceived, DeathByDiseaseCaseAtFacility, \
-    DeathByDiseaseCaseNotAtFacility,ServiceReceived, BedOccupancy,BedOccupancyReport, RevenueReceivedItems, ServiceReceivedItems, \
+    DeathByDiseaseCaseNotAtFacility, ServiceReceived, BedOccupancy, BedOccupancyReport, RevenueReceivedItems, \
+    ServiceReceivedItems, \
     DeathByDiseaseCaseAtFacilityItems, DeathByDiseaseCaseNotAtFacilityItems, BedOccupancyItems
 import datetime
 from MasterData import models as master_data_models
@@ -23,7 +24,6 @@ class TransactionSummaryView(viewsets.ModelViewSet):
 
 
 class ServiceReceivedView(viewsets.ModelViewSet):
-
     queryset = ServiceReceived.objects.all()
     serializer_class = IncomingServicesReceivedSerializer
     permission_classes = (IsAuthenticated,)
@@ -67,7 +67,7 @@ class ServiceReceivedView(viewsets.ModelViewSet):
             try:
                 instance_service_received_item = ServiceReceivedItems()
 
-                instance_service_received_item.service_received_id= instance_service_received.id
+                instance_service_received_item.service_received_id = instance_service_received.id
                 instance_service_received_item.department_name = val["deptName"]
                 instance_service_received_item.department_id = val["deptId"]
 
@@ -92,8 +92,7 @@ class ServiceReceivedView(viewsets.ModelViewSet):
             except:
                 pass
 
-        return  status
-
+        return status
 
     def list(self, request):
         queryset = ServiceReceivedItems.objects.all().order_by('-id')
@@ -151,9 +150,11 @@ class DeathByDiseaseCaseAtFacilityView(viewsets.ModelViewSet):
                 instance_death_by_disease_case_at_facility_item.ward_id = val["wardId"]
                 instance_death_by_disease_case_at_facility_item.patient_id = val["patId"]
                 instance_death_by_disease_case_at_facility_item.gender = val["gender"]
-                instance_death_by_disease_case_at_facility_item.date_of_birth = validators.convert_date_formats(val["dob"])
+                instance_death_by_disease_case_at_facility_item.date_of_birth = validators.convert_date_formats(
+                    val["dob"])
                 instance_death_by_disease_case_at_facility_item.icd_10_code = val["icd10Code"]
-                instance_death_by_disease_case_at_facility_item.date_death_occurred = validators.convert_date_formats(val["dateDeathOccurred"])
+                instance_death_by_disease_case_at_facility_item.date_death_occurred = validators.convert_date_formats(
+                    val["dateDeathOccurred"])
 
                 instance_death_by_disease_case_at_facility_item.save()
 
@@ -216,9 +217,11 @@ class DeathByDiseaseCaseNotAtFacilityView(viewsets.ModelViewSet):
 
                 instance_death_by_disease_case_not_at_facility_items.place_of_death_id = val["placeOfDeathId"]
                 instance_death_by_disease_case_not_at_facility_items.gender = val["gender"]
-                instance_death_by_disease_case_not_at_facility_items.date_of_birth = validators.convert_date_formats(val["dob"])
+                instance_death_by_disease_case_not_at_facility_items.date_of_birth = validators.convert_date_formats(
+                    val["dob"])
                 instance_death_by_disease_case_not_at_facility_items.icd_10_code = val["icd10Code"]
-                instance_death_by_disease_case_not_at_facility_items.date_death_occurred = validators.convert_date_formats(val["dateDeathOccurred"])
+                instance_death_by_disease_case_not_at_facility_items.date_death_occurred = validators.convert_date_formats(
+                    val["dateDeathOccurred"])
                 instance_death_by_disease_case_not_at_facility_items.death_id = val["deathId"]
 
                 instance_death_by_disease_case_not_at_facility_items.save()
@@ -280,7 +283,8 @@ class RevenueReceivedView(viewsets.ModelViewSet):
                 instance_revenue_received_items = RevenueReceivedItems()
 
                 instance_revenue_received_items.system_trans_id = val["systemTransId"]
-                instance_revenue_received_items.transaction_date = validators.convert_date_formats(val["transactionDate"])
+                instance_revenue_received_items.transaction_date = validators.convert_date_formats(
+                    val["transactionDate"])
 
                 if val["patId"] is None:
                     instance_revenue_received_items.patient_id = 0

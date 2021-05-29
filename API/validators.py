@@ -1,6 +1,7 @@
 from datetime import datetime
 from dateutil.parser import parse
-from Core.models import FieldValidationMapping, ValidationRule, TransactionSummary, TransactionSummaryLine, PayloadThreshold
+from Core.models import FieldValidationMapping, ValidationRule, TransactionSummary, TransactionSummaryLine, \
+    PayloadThreshold
 import json
 
 
@@ -78,7 +79,6 @@ def validate_received_payload(data):
 
     allowed_threshold = instance_message_type.percentage_threshold
 
-
     for val in data_items:
         rules = FieldValidationMapping.objects.filter(message_type=message_type)
         for rule in rules:
@@ -99,11 +99,11 @@ def validate_received_payload(data):
                     else:
                         transaction_status = True
             except (NameError, TypeError, RuntimeError, KeyError, ValueError):
-                raised_error = "Failed to convert "+field+" with value of "+val[field]+" to a valid date format."
+                raised_error = "Failed to convert " + field + " with value of " + val[
+                    field] + " to a valid date format."
                 transaction_status = False
                 validation_rule_failed += 1
                 error_message.append(raised_error)
-
 
             # Check if it is a future date. Will return True if future date
             try:
@@ -124,7 +124,6 @@ def validate_received_payload(data):
                 transaction_status = False
                 validation_rule_failed += 1
                 error_message.append(raised_error)
-
 
             # Check if it is a past date. Will return True if past date
             try:
@@ -194,10 +193,10 @@ def validate_received_payload(data):
 
         if validation_rule_failed > 0:
             previous_transaction.total_failed += 1
-            total_failed_records +=1
+            total_failed_records += 1
         else:
             previous_transaction.total_passed += 1
-            total_passed_records +=1
+            total_passed_records += 1
 
         previous_transaction.save()
 
@@ -224,11 +223,11 @@ def validate_received_payload(data):
     # transaction_status = False
 
     if False in total_payload_transactions_status_array and calculated_threshold >= allowed_threshold:
-         transaction_status = True
+        transaction_status = True
     elif False in total_payload_transactions_status_array and calculated_threshold < allowed_threshold:
         transaction_status = False
     else:
-        transaction_status  = True
+        transaction_status = True
 
     return transaction_status
 
@@ -236,7 +235,7 @@ def validate_received_payload(data):
 def calculate_threshold(total_failed, total_passed):
     calculated_threshold = 0
     if total_failed != 0 and total_passed != 0:
-        calculated_threshold = (total_passed/(total_failed + total_passed)) * 100
+        calculated_threshold = (total_passed / (total_failed + total_passed)) * 100
     elif total_passed == 0 and total_failed != 0:
         calculated_threshold = 0
     elif total_passed != 0 and total_failed == 0:

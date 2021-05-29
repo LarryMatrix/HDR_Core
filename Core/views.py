@@ -17,12 +17,12 @@ def convert_to_csv(request):
         transaction_id = request.POST["item_pk"]
         status = request.POST["status"]
 
-        transaction_lines = TransactionSummaryLine.objects.filter(transaction_id = transaction_id)
+        transaction_lines = TransactionSummaryLine.objects.filter(transaction_id=transaction_id)
         transaction = TransactionSummary.objects.get(id=transaction_id)
         message_type = transaction.message_type
         facility_hfr_code = transaction.facility_hfr_code
 
-        instance_facility = master_data_models.Facility.objects.filter(facility_hfr_code = facility_hfr_code).first()
+        instance_facility = master_data_models.Facility.objects.filter(facility_hfr_code=facility_hfr_code).first()
         org_name = instance_facility.description
 
         model_fields = TransactionSummaryLine._meta.fields + TransactionSummaryLine._meta.many_to_many
@@ -38,10 +38,11 @@ def convert_to_csv(request):
         json_object = transaction_lines.first().payload_object
 
         if status == "":
-            transaction_lines_payload = TransactionSummaryLine.objects.filter(transaction_id = transaction_id)
+            transaction_lines_payload = TransactionSummaryLine.objects.filter(transaction_id=transaction_id)
         else:
             if status == "fail":
-                transaction_lines_payload = TransactionSummaryLine.objects.filter(transaction_id=transaction_id, transaction_status = 0 )
+                transaction_lines_payload = TransactionSummaryLine.objects.filter(transaction_id=transaction_id,
+                                                                                  transaction_status=0)
             else:
                 transaction_lines_payload = TransactionSummaryLine.objects.filter(transaction_id=transaction_id,
                                                                                   transaction_status=1)
@@ -85,7 +86,7 @@ def convert_to_csv(request):
             writer.writerow(values)
         data = response
 
-        return  HttpResponse(data, content_type='text/csv')
+        return HttpResponse(data, content_type='text/csv')
 
 
 def filter_transaction_lines(request):
@@ -94,7 +95,8 @@ def filter_transaction_lines(request):
         transaction_id = request.POST["item_pk"]
 
         if status == "pass":
-            transaction_lines = TransactionSummaryLine.objects.filter(transaction_id = transaction_id, transaction_status = 1)
+            transaction_lines = TransactionSummaryLine.objects.filter(transaction_id=transaction_id,
+                                                                      transaction_status=1)
         else:
             transaction_lines = TransactionSummaryLine.objects.filter(transaction_id=transaction_id,
                                                                       transaction_status=0)
@@ -102,7 +104,8 @@ def filter_transaction_lines(request):
         transaction_summary_lines_table = user_management_tables.TransactionSummaryLineTable(transaction_lines)
         RequestConfig(request, paginate={"per_page": 10}).configure(transaction_summary_lines_table)
 
-        return render(request,"UserManagement/Dashboard/FilteredElements.html", {"transaction_summary_lines_table":transaction_summary_lines_table})
+        return render(request, "UserManagement/Dashboard/FilteredElements.html",
+                      {"transaction_summary_lines_table": transaction_summary_lines_table})
 
 
 def download_cpt_codes_as_csv(request):
@@ -183,7 +186,7 @@ def save_cpt_code_entries(file_path, facility_id, facility_hfr_code):
     fp.close()
 
 
-def regenerate_services_received_json_payload(request,lines, message_type):
+def regenerate_services_received_json_payload(request, lines, message_type):
     data_items_array = []
     instance = master_data_models.Facility.objects.get(id=request.user.profile.facility_id)
     facility_name = instance.description
@@ -215,4 +218,3 @@ def regenerate_services_received_json_payload(request,lines, message_type):
     print(final_array)
 
     return final_array
-

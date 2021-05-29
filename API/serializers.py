@@ -9,7 +9,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = user_management_models.Profile
-        fields = ('user','birth_date', 'location','reg_id')
+        fields = ('user', 'birth_date', 'location', 'reg_id')
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -29,18 +29,16 @@ class TokenSerializer(serializers.ModelSerializer):
 
 
 class TransactionSummarySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.TransactionSummary
         fields = '__all__'
 
 
 class ServiceReceivedItemsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.ServiceReceivedItems
-        fields = ('service_received', 'department_name','department_id', 'patient_id', 'gender', 'date_of_birth',
-                  'med_svc_code', 'icd_10_code', 'service_date','service_provider_ranking_id','visit_type' )
+        fields = ('service_received', 'department_name', 'department_id', 'patient_id', 'gender', 'date_of_birth',
+                  'med_svc_code', 'icd_10_code', 'service_date', 'service_provider_ranking_id', 'visit_type')
 
 
 class ServiceReceivedSerializer(serializers.ModelSerializer):
@@ -48,7 +46,7 @@ class ServiceReceivedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = core_models.ServiceReceived
-        fields = ('org_name','facility_hfr_code','items')
+        fields = ('org_name', 'facility_hfr_code', 'items')
 
 
 class IncomingServiceReceivedItemsSerializer(serializers.Serializer):
@@ -72,11 +70,10 @@ class IncomingServicesReceivedSerializer(serializers.Serializer):
 
 
 class DeathByDiseaseCaseAtFacilityItemsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.DeathByDiseaseCaseAtFacilityItems
-        fields = ('death_by_disease_case_at_facility','ward_name','ward_id','patient_id',
-                  'gender','date_of_birth','icd_10_code','date_death_occurred')
+        fields = ('death_by_disease_case_at_facility', 'ward_name', 'ward_id', 'patient_id',
+                  'gender', 'date_of_birth', 'icd_10_code', 'date_death_occurred')
 
 
 class DeathByDiseaseCaseAtFacilitySerializer(serializers.ModelSerializer):
@@ -105,10 +102,9 @@ class IncomingDeathByDiseaseCaseAtTheFacilitySerializer(serializers.Serializer):
 
 
 class DeathByDiseaseCaseNotAtFacilityItemsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.DeathByDiseaseCaseNotAtFacilityItems
-        fields = ('place_of_death_id','gender','date_of_birth','icd_10_code','date_death_occurred','death_id')
+        fields = ('place_of_death_id', 'gender', 'date_of_birth', 'icd_10_code', 'date_death_occurred', 'death_id')
 
 
 class DeathByDiseaseCaseNotAtFacilitySerializer(serializers.ModelSerializer):
@@ -122,7 +118,7 @@ class DeathByDiseaseCaseNotAtFacilitySerializer(serializers.ModelSerializer):
 class IncomingDeathByDiseaseCaseNotAtTheFacilityItemsSerializer(serializers.Serializer):
     deathId = serializers.CharField(max_length=255)
     placeOfDeathId = serializers.CharField(max_length=255)
-    icd10Code = serializers.CharField(max_length=255, required=False, allow_blank=True, allow_null=True )
+    icd10Code = serializers.CharField(max_length=255, required=False, allow_blank=True, allow_null=True)
     gender = serializers.CharField(max_length=255)
     dob = serializers.CharField(max_length=255)
     dateDeathOccurred = serializers.CharField(max_length=255)
@@ -136,10 +132,9 @@ class IncomingDeathByDiseaseCaseNotAtTheFacilitySerializer(serializers.Serialize
 
 
 class BedOccupancyItemsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.BedOccupancyItems
-        fields = ('bed_occupancy','patient_id','admission_date','discharge_date','ward_name','ward_id')
+        fields = ('bed_occupancy', 'patient_id', 'admission_date', 'discharge_date', 'ward_name', 'ward_id')
 
 
 class BedOccupancySerializer(serializers.ModelSerializer):
@@ -166,11 +161,11 @@ class IncomingBedOccupancySerializer(serializers.Serializer):
 
 
 class RevenueReceivedItemsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = core_models.RevenueReceivedItems
-        fields = ('revenue_received','system_trans_id','transaction_date','patient_id', 'gender','date_of_birth',
-                  'med_svc_code', 'payer_id','exemption_category_id','billed_amount','waived_amount','service_provider_ranking_id')
+        fields = ('revenue_received', 'system_trans_id', 'transaction_date', 'patient_id', 'gender', 'date_of_birth',
+                  'med_svc_code', 'payer_id', 'exemption_category_id', 'billed_amount', 'waived_amount',
+                  'service_provider_ranking_id')
 
 
 class RevenueReceivedSerializer(serializers.ModelSerializer):
@@ -186,7 +181,7 @@ class IncomingRevenueReceivedItemsSerializer(serializers.Serializer):
     transactionDate = serializers.CharField(max_length=255)
     patId = serializers.CharField(max_length=255, required=False, allow_blank=True, allow_null=True)
     gender = serializers.CharField(max_length=255)
-    dob = serializers.CharField(max_length=255,required=False, allow_blank=True, allow_null=True)
+    dob = serializers.CharField(max_length=255, required=False, allow_blank=True, allow_null=True)
     medSvcCode = serializers.CharField(max_length=255)
     payerId = serializers.CharField(max_length=255)
     exemptionCategoryId = serializers.CharField(required=False, allow_blank=True, allow_null=True)
@@ -200,8 +195,3 @@ class IncomingRevenueReceivedSerializer(serializers.Serializer):
     orgName = serializers.CharField(max_length=255)
     facilityHfrCode = serializers.CharField(max_length=255)
     items = IncomingRevenueReceivedItemsSerializer(many=True, read_only=False)
-
-
-
-
-

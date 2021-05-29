@@ -1,4 +1,3 @@
-
 """
 Django settings for HDR project.
 
@@ -12,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/."""
 
 import os
 from decouple import config
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -67,10 +65,9 @@ REST_FRAMEWORK = {
     )
 }
 
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,10 +88,7 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 CELERY_TIMEZONE = 'UTC'
 CELERY_ENABLE_UTC = True
 
-
 WSGI_APPLICATION = 'HDR.wsgi.application'
-
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -110,7 +104,23 @@ DATABASES = {
     }
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
+CORS_ORIGIN_WHITELIST = config('ALLOWED_HOSTS', cast=lambda v: [
+    s.strip() for s in v.split(',')])
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'authorization',
+    'access-control-allow-origin',
+    'content-type',
+    'origin',
+    'prefer',
+    'referer',
+    'user-agent',
+    'content-disposition',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -163,14 +173,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Dar_es_Salaam'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

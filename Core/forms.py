@@ -2,8 +2,8 @@ from django import forms
 from API import validators as validators
 from .models import PayloadUpload
 
-class PayloadImportForm(forms.ModelForm):
 
+class PayloadImportForm(forms.ModelForm):
     class Meta:
         model = PayloadUpload
         fields = "__all__"
@@ -20,5 +20,4 @@ class PayloadImportForm(forms.ModelForm):
 
 
 class CPTCodeMappingImportForm(forms.Form):
-
     file = forms.FileField()
