@@ -11,38 +11,23 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/."""
 
 import os
-import json
-from django.core.exceptions import ImproperlyConfigured
+from decouple import config
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
-
-
-def get_secret(setting, secrets=secrets):
-    """Get secret setting or fail with ImproperlyConfigured"""
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
-
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['41.59.227.81','127.0.0.1']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [
+    s.strip() for s in v.split(',')])
 
 # Application definition
 
@@ -116,12 +101,12 @@ WSGI_APPLICATION = 'HDR.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': get_secret('ENGINE'),
-        'NAME': get_secret('DB_NAME'),
-        'USER': get_secret('DB_USER'),
-        'PASSWORD': get_secret('DB_PASSWORD'),
-        'HOST': get_secret('DB_HOST'),
-        'PORT': get_secret('DB_PORT'),
+        'ENGINE': config('ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
