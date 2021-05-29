@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2419a3b0-632f-4237-a4f1-8add23126c2c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HDR/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/HDR/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HDR/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HDR/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HDR/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HDR/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterData/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MasterData/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserManagement/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManagement/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserManagement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManagement/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserManagement/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManagement/tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManagement/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserManagement/views/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManagement/views/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="2419a3b0-632f-4237-a4f1-8add23126c2c" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +105,7 @@
       <updated>1622203600835</updated>
       <workItem from="1622273949881" duration="2070000" />
       <workItem from="1622277158785" duration="379000" />
-      <workItem from="1622282933312" duration="1291000" />
+      <workItem from="1622282933312" duration="2045000" />
     </task>
     <servers />
   </component>
